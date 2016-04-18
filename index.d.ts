@@ -1,12 +1,12 @@
 
 interface ISoundManagerOptions {
-    url : string;
+    url: string;
 }
 
 interface ISoundData {
     id: string;
     url: string;
-    autoplay: boolean;
+    autoPlay: boolean;
     volume: number;
 }
 
@@ -16,11 +16,11 @@ declare class SoundManagerSound {
 }
 
 declare class SoundManager {
-    setup(options : ISoundManagerOptions);
-    createSound(options :ISoundData);
-    play(id:string);
+    setup(options: ISoundManagerOptions);
+    createSound(options: ISoundData);
+    play(id: string);
     onPosition(id: string, timeMs: number, callback: Function);
-    getSoundById(id:string): SoundManagerSound;
+    getSoundById(id: string): SoundManagerSound;
     reboot(): void;
 }
 
