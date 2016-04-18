@@ -3,8 +3,8 @@ interface ISoundManagerOptions {
     url : string;
 }
 
-interface ISoundManager {
+declare class SoundManager {
     setup(options : ISoundManagerOptions);
 }
 
-declare var soundManager : ISoundManager;
+declare var soundManager : SoundManager;
