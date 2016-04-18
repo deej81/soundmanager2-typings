@@ -4,9 +4,9 @@ interface ISoundManagerOptions {
 }
 
 interface ISoundData {
+    autoPlay: boolean;
     id: string;
     url: string;
-    autoPlay: boolean;
     volume: number;
 }
 
@@ -16,12 +16,13 @@ declare class SoundManagerSound {
 }
 
 declare class SoundManager {
-    setup(options: ISoundManagerOptions);
     createSound(options: ISoundData);
-    play(id: string);
-    onPosition(id: string, timeMs: number, callback: Function);
+    destroySound(id: string): void;
     getSoundById(id: string): SoundManagerSound;
+    onPosition(id: string, timeMs: number, callback: Function);
+    play(id: string);
     reboot(): void;
+    setup(options: ISoundManagerOptions);
 }
 
 declare var soundManager : SoundManager;
