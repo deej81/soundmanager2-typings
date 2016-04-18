@@ -229,6 +229,7 @@ declare class SoundManager {
      * @return {SoundManager} The new SoundManager instance
      */
     constructor(smURL: string, smID: string);
+    constructor(smURL: string);
 
     /**
      * Configures top-level soundManager properties.
@@ -247,14 +248,15 @@ declare class SoundManager {
      * @return {object} SMSound The new SMSound object.
      */
     createSound(oOptions, _url): SMSound;
-
+    createSound(oOptions): SMSound;
     /**
      * Destroys a SMSound sound object instance.
      *
      * @param {string} sID The ID of the sound to destroy
      */
 
-    destroySound(sID, _bFromSound);
+    destroySound(sID: string, _bFromSound);
+    destroySound(sID: string);
 
     /**
      * Calls the load() method of a SMSound object by ID.
@@ -263,7 +265,7 @@ declare class SoundManager {
      * @param {object} oOptions Optional: Sound options
      */
 
-    load(sID, oOptions);
+    load(sID: string, oOptions);
 
     /**
      * Calls the unload() method of a SMSound object by ID.
@@ -271,7 +273,7 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      */
 
-    unload(sID);
+    unload(sID: string);
 
     /**
      * Calls the onPosition() method of a SMSound object by ID.
@@ -283,7 +285,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    onPosition(sID, nPosition, oMethod, oScope): SMSound;
+    onPosition(sID: string, nPosition, oMethod, oScope): SMSound;
 
     /**
      * Calls the clearOnPosition() method of a SMSound object by ID.
@@ -294,7 +296,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    clearOnPosition(sID, nPosition, oMethod): SMSound;
+    clearOnPosition(sID: string, nPosition, oMethod): SMSound;
 
     /**
      * Calls the play() method of a SMSound object by ID.
@@ -304,7 +306,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    play(sID, oOptions): SMSound;
+    play(sID: string, oOptions): SMSound;
 
     /**
      * Calls the setPosition() method of a SMSound object by ID.
@@ -314,7 +316,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    setPosition(sID, nMsecOffset): SMSound;
+    setPosition(sID: string, nMsecOffset): SMSound;
 
     /**
      * Calls the stop() method of a SMSound object by ID.
@@ -323,7 +325,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    stop(sID): SMSound;
+    stop(sID: string): SMSound;
 
     /**
      * Stops all currently-playing sounds.
@@ -338,7 +340,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    pause(sID): SMSound;
+    pause(sID: string): SMSound;
 
     /**
      * Pauses all currently-playing sounds.
@@ -353,7 +355,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    resume(sID): SMSound;
+    resume(sID: string): SMSound;
 
     /**
      * Resumes all currently-paused sounds.
@@ -368,7 +370,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    togglePause(sID): SMSound;
+    togglePause(sID: string): SMSound;
 
     /**
      * Calls the setPan() method of a SMSound object by ID.
@@ -378,7 +380,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    setPan(sID, nPan): SMSound;
+    setPan(sID: string, nPan): SMSound;
 
     /**
      * Calls the setVolume() method of a SMSound object by ID
@@ -389,7 +391,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    setVolume(sID, nVol): SMSound;
+    setVolume(sID: string, nVol): SMSound;
 
     /**
      * Calls the mute() method of either a single SMSound object by ID, or all sound objects.
@@ -397,7 +399,7 @@ declare class SoundManager {
      * @param {string} sID Optional: The ID of the sound (if omitted, all sounds will be used.)
      */
 
-    mute(sID);
+    mute(sID: string);
 
     /**
      * Mutes all sounds.
@@ -410,7 +412,7 @@ declare class SoundManager {
      * @param {string} sID Optional: The ID of the sound (if omitted, all sounds will be used.)
      */
 
-    unmute(sID);
+    unmute(sID: string);
 
     /**
      * Unmutes all sounds.
@@ -425,7 +427,7 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    toggleMute(sID): SMSound;
+    toggleMute(sID: string): SMSound;
 
     /**
      * Retrieves the memory used by the flash plugin.
@@ -467,7 +469,8 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    getSoundById(sID, _suppressDebug): SMSound;
+    getSoundById(sID: string, _suppressDebug): SMSound;
+    getSoundById(sID: string): SMSound;
 
     /**
      * Queues a callback for execution when SoundManager has successfully initialized.
