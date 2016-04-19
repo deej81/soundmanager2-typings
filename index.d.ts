@@ -7,8 +7,8 @@ interface SoundOptions {
 }
 
 declare enum PlayState {
-    stopped = 0,
-    playing = 1
+    Stopped = 0,
+    Playing = 1
 }
 
 
@@ -131,7 +131,8 @@ declare class SMSound {
      * @return {SMSound} The SMSound object
      */
 
-    setVolume(nVol, _bInstanceOnly);
+    setVolume(nVol: number, _bInstanceOnly);
+    setVolume(nVol: number);
 
     /**
      * Mutes the sound.
@@ -518,7 +519,8 @@ declare class SoundManager {
      * @return {object} soundManager The soundManager instance.
      */
 
-    reboot(resetEvents, excludeInit);
+    reboot(resetEvents: boolean, excludeInit: boolean);
+    reboot();
 
     reset();
 

@@ -2,7 +2,7 @@
   "name": "soundmanager2",
   "main": "index.d.ts",
   "homepage": "https://github.com/scottschiller/SoundManager2",
-  "version": "",
+  "version": "2.97a.20150601",
   "devDependencies": {
     "blue-tape": "registry:npm/blue-tape#0.1.0+20160322235613"
   },
