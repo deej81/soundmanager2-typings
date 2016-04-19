@@ -1,14 +1,22 @@
 
+interface SoundOptions {
+    autoPlay: boolean;
+    id: string;
+    url: string;
+    volume: number;
+}
+
+
 declare class SMSound {
-    constructor(oOptions);
+    constructor(oOptions: SoundOptions);
     /**
      * Begins loading a sound per its *url*.
      *
-     * @param {object} oOptions Optional: Sound options
+     * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
 
-    load(oOptions);
+    load(oOptions: SoundOptions);
 
     /**
      * Unloads a sound, canceling any open HTTP requests.
@@ -27,11 +35,11 @@ declare class SMSound {
     /**
      * Begins playing a sound.
      *
-     * @param {object} oOptions Optional: Sound options
+     * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
 
-    play(oOptions, _updatePlayState); 
+    play(oOptions: SoundOptions, _updatePlayState); 
 
     /**
      * Stops playing a sound (and optionally, all sounds)
@@ -244,11 +252,11 @@ declare class SoundManager {
     /**
      * Creates a SMSound sound object instance. Can also be overloaded, e.g., createSound('mySound', '/some.mp3');
      *
-     * @param {object} oOptions Sound options (at minimum, url parameter is required.)
+     * @param {object} oOptions: SoundOptions Sound options (at minimum, url parameter is required.)
      * @return {object} SMSound The new SMSound object.
      */
-    createSound(oOptions, _url): SMSound;
-    createSound(oOptions): SMSound;
+    createSound(oOptions: SoundOptions, _url): SMSound;
+    createSound(oOptions: SoundOptions): SMSound;
     /**
      * Destroys a SMSound sound object instance.
      *
@@ -262,10 +270,10 @@ declare class SoundManager {
      * Calls the load() method of a SMSound object by ID.
      *
      * @param {string} sID The ID of the sound
-     * @param {object} oOptions Optional: Sound options
+     * @param {object} oOptions: SoundOptions Optional: Sound options
      */
 
-    load(sID: string, oOptions);
+    load(sID: string, oOptions: SoundOptions);
 
     /**
      * Calls the unload() method of a SMSound object by ID.
@@ -304,12 +312,13 @@ declare class SoundManager {
      * Calls the play() method of a SMSound object by ID.
      *
      * @param {string} sID The ID of the sound
-     * @param {object} oOptions Optional: Sound options
+     * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
 
-    play(sID: string, oOptions): SMSound;
+
     play(sID: string): SMSound;
+    play(sID: string, oOptions: SoundOptions): SMSound;
 
     /**
      * Calls the setPosition() method of a SMSound object by ID.
