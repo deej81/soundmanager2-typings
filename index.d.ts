@@ -307,6 +307,7 @@ declare class SoundManager {
      */
 
     play(sID: string, oOptions): SMSound;
+    play(sID: string): SMSound;
 
     /**
      * Calls the setPosition() method of a SMSound object by ID.
