@@ -177,7 +177,7 @@ declare enum FlashScriptAccess {
   * defines top-level configuration properties to be applied to the soundManager instance (eg. soundManager.flashVersion)
   * to set these properties, use the setup() method - eg., soundManager.setup({url: '/swf/', flashVersion: 9})
   */
-export class SoundManagerOptions {
+interface ISoundManagerOptions {
     url: string;           // path (directory) where SoundManager 2 SWFs exist, eg., /path/to/swfs/
     flashVersion: number;                 // flash build to use (8 or 9.) Some API features require 9.
     debugMode: boolean;                  // enable debugging output (console.log() with HTML fallback)
@@ -202,7 +202,7 @@ export class SoundManagerOptions {
     idPrefix: string;
 }
 
-export class IFlash9Options extends SoundManagerOptions {
+interface IFlash9Options extends ISoundManagerOptions {
     isMovieStar: boolean;      // "MovieStar" MPEG4 audio mode. Null (default) = auto detect MP4; AAC etc. based on URL. true = force on; ignore URL
     usePeakData: boolean;     // enable left/right channel peak (level) data
     useWaveformData: boolean; // enable sound spectrum (raw waveform data) - NOTE: May increase CPU load.
@@ -211,7 +211,7 @@ export class IFlash9Options extends SoundManagerOptions {
     ondataerror: Function       // callback for waveform/eq data access error (flash playing audio in other tabs/domains)
 }
 
-export class IFlash9MoviestarOptions extends IFlash9Options {
+interface IFlash9MoviestarOptions extends IFlash9Options {
     bufferTime: number;          // seconds of data to buffer before playback begins (null = flash default of 0.1 seconds - if AAC playback is gappy; try increasing.)
     serverURL: string;        // rtmp: FMS or FMIS server to connect to; required when requesting media via RTMP or one of its variants
     onconnect: Function;        // rtmp: callback for connection to flash media server
@@ -237,7 +237,7 @@ declare class SoundManager {
      * @param {IFlash9MoviestarOptions} options Option parameters, eg. { flashVersion: 9, url: '/path/to/swfs/' }
      * onready and ontimeout are also accepted parameters. call soundManager.setup() to see the full list.
      */
-    setup(options: IFlash9MoviestarOptions | IFlash9Options | SoundManagerOptions): IFlash9MoviestarOptions ;
+    setup(options: IFlash9MoviestarOptions | IFlash9Options | ISoundManagerOptions): IFlash9MoviestarOptions ;
 
    
 
