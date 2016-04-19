@@ -285,7 +285,9 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
 
-    onPosition(sID: string, nPosition, oMethod, oScope): SMSound;
+    onPosition(sID: string, nPosition: number): SMSound;
+    onPosition(sID: string, nPosition: number, oMethod: Function): SMSound;
+    onPosition(sID: string, nPosition: number, oMethod:Function, oScope: any): SMSound;
 
     /**
      * Calls the clearOnPosition() method of a SMSound object by ID.
