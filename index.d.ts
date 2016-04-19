@@ -178,44 +178,44 @@ declare enum FlashScriptAccess {
   * to set these properties, use the setup() method - eg., soundManager.setup({url: '/swf/', flashVersion: 9})
   */
 interface ISoundManagerOptions {
-    url: string;           // path (directory) where SoundManager 2 SWFs exist, eg., /path/to/swfs/
-    flashVersion: number;                 // flash build to use (8 or 9.) Some API features require 9.
-    debugMode: boolean;                  // enable debugging output (console.log() with HTML fallback)
-    debugFlash: boolean;                // enable debugging output inside SWF, troubleshoot Flash/browser issues
-    useConsole: boolean;                 // use console.log() if available (otherwise, writes to #soundmanager-debug element)
-    consoleOnly: boolean;                // if console is being used, do not create/write to #soundmanager-debug
-    waitForWindowLoad: boolean;         // force SM2 to wait for window.onload() before trying to call soundManager.onload()
-    bgColor: string;               // SWF background color. N/A when wmode = transparent
-    useHighPerformance: boolean;        // position:fixed flash movie can help increase js/flash speed, minimize lag
-    flashPollingInterval: number;       // msec affecting whileplaying/loading callback frequency. If null, default of 50 msec is used.
-    html5PollingInterval: number;       // msec affecting whileplaying() for HTML5 audio, excluding mobile devices. If null, native HTML5 update events are used.
-    flashLoadTimeout: number;           // msec to wait for flash movie to load before failing (0 = infinity)
-    wmode: FlashRenderingMode;                      // flash rendering mode - null, transparent, or opaque (last two allow z-index to work)
-    allowScriptAccess: FlashScriptAccess;      // for scripting the SWF (object/embed property), always or sameDomain
-    useFlashBlock: boolean;             // *requires flashblock.css, see demos* - allow recovery from flash blockers. Wait indefinitely and apply timeout CSS to SWF, if applicable.
-    useHTML5Audio: boolean;              // use HTML5 Audio() where API is supported (most Safari, Chrome versions), Firefox (MP3/MP4 support varies.) Ideally, transparent vs. Flash API where possible.
-    forceUseGlobalHTML5Audio: boolean;  // if boolean, a single Audio() object is used for all sounds - and only one can play at a time.
-    ignoreMobileRestrictions: boolean;  // if boolean, SM2 will not apply global HTML5 audio rules to mobile UAs. iOS > 7 and WebViews may allow multiple Audio() instances.
-    html5Test: RegExp; // HTML5 Audio() format support test. Use /^probably$/i; if you want to be more conservative.
-    preferFlash: boolean;               // overrides useHTML5audio, will use Flash for MP3/MP4/AAC if present. Potential option if HTML5 playback with these formats is quirky.
-    noSWFCache: boolean;                // if boolean, appends ?ts={date} to break aggressive SWF caching.
-    idPrefix: string;
+    url?: string;           // path (directory) where SoundManager 2 SWFs exist, eg., /path/to/swfs/
+    flashVersion?: number;                 // flash build to use (8 or 9.) Some API features require 9.
+    debugMode?: boolean;                  // enable debugging output (console.log() with HTML fallback)
+    debugFlash?: boolean;                // enable debugging output inside SWF, troubleshoot Flash/browser issues
+    useConsole?: boolean;                 // use console.log() if available (otherwise, writes to #soundmanager-debug element)
+    consoleOnly?: boolean;                // if console is being used, do not create/write to #soundmanager-debug
+    waitForWindowLoad?: boolean;         // force SM2 to wait for window.onload() before trying to call soundManager.onload()
+    bgColor?: string;               // SWF background color. N/A when wmode = transparent
+    useHighPerformance?: boolean;        // position?:fixed flash movie can help increase js/flash speed, minimize lag
+    flashPollingInterval?: number;       // msec affecting whileplaying/loading callback frequency. If null, default of 50 msec is used.
+    html5PollingInterval?: number;       // msec affecting whileplaying() for HTML5 audio, excluding mobile devices. If null, native HTML5 update events are used.
+    flashLoadTimeout?: number;           // msec to wait for flash movie to load before failing (0 = infinity)
+    wmode?: FlashRenderingMode;                      // flash rendering mode - null, transparent, or opaque (last two allow z-index to work)
+    allowScriptAccess?: FlashScriptAccess;      // for scripting the SWF (object/embed property), always or sameDomain
+    useFlashBlock?: boolean;             // *requires flashblock.css, see demos* - allow recovery from flash blockers. Wait indefinitely and apply timeout CSS to SWF, if applicable.
+    useHTML5Audio?: boolean;              // use HTML5 Audio() where API is supported (most Safari, Chrome versions), Firefox (MP3/MP4 support varies.) Ideally, transparent vs. Flash API where possible.
+    forceUseGlobalHTML5Audio?: boolean;  // if boolean, a single Audio() object is used for all sounds - and only one can play at a time.
+    ignoreMobileRestrictions?: boolean;  // if boolean, SM2 will not apply global HTML5 audio rules to mobile UAs. iOS > 7 and WebViews may allow multiple Audio() instances.
+    html5Test?: RegExp; // HTML5 Audio() format support test. Use /^probably$/i; if you want to be more conservative.
+    preferFlash?: boolean;               // overrides useHTML5audio, will use Flash for MP3/MP4/AAC if present. Potential option if HTML5 playback with these formats is quirky.
+    noSWFCache?: boolean;                // if boolean, appends ?ts={date} to break aggressive SWF caching.
+    idPrefix?: string;
 }
 
 interface IFlash9Options extends ISoundManagerOptions {
-    isMovieStar: boolean;      // "MovieStar" MPEG4 audio mode. Null (default) = auto detect MP4; AAC etc. based on URL. true = force on; ignore URL
-    usePeakData: boolean;     // enable left/right channel peak (level) data
-    useWaveformData: boolean; // enable sound spectrum (raw waveform data) - NOTE: May increase CPU load.
-    useEQData: boolean;       // enable sound EQ (frequency spectrum data) - NOTE: May increase CPU load.
-    onbufferchange: Function;   // callback for "isBuffering" property change
-    ondataerror: Function       // callback for waveform/eq data access error (flash playing audio in other tabs/domains)
+    isMovieStar?: boolean;      // "MovieStar" MPEG4 audio mode. Null (default) = auto detect MP4; AAC etc. based on URL. true = force on; ignore URL
+    usePeakData?: boolean;     // enable left/right channel peak (level) data
+    useWaveformData?: boolean; // enable sound spectrum (raw waveform data) - NOTE?: May increase CPU load.
+    useEQData?: boolean;       // enable sound EQ (frequency spectrum data) - NOTE?: May increase CPU load.
+    onbufferchange?: Function;   // callback for "isBuffering" property change
+    ondataerror?: Function       // callback for waveform/eq data access error (flash playing audio in other tabs/domains)
 }
 
 interface IFlash9MoviestarOptions extends IFlash9Options {
-    bufferTime: number;          // seconds of data to buffer before playback begins (null = flash default of 0.1 seconds - if AAC playback is gappy; try increasing.)
-    serverURL: string;        // rtmp: FMS or FMIS server to connect to; required when requesting media via RTMP or one of its variants
-    onconnect: Function;        // rtmp: callback for connection to flash media server
-    duration: number;          // rtmp: song duration (msec)
+    bufferTime?: number;          // seconds of data to buffer before playback begins (null = flash default of 0.1 seconds - if AAC playback is gappy; try increasing.)
+    serverURL?: string;        // rtmp?: FMS or FMIS server to connect to; required when requesting media via RTMP or one of its variants
+    onconnect?: Function;        // rtmp?: callback for connection to flash media server
+    duration?: number;          // rtmp?: song duration (msec)
 }
 
 declare class SoundManager {
