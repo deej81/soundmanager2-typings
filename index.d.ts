@@ -6,8 +6,16 @@ interface SoundOptions {
     volume: number;
 }
 
+declare enum PlayState {
+    stopped = 0,
+    playing = 1
+}
+
 
 declare class SMSound {
+    
+    playState: PlayState;
+    
     constructor(oOptions: SoundOptions);
     /**
      * Begins loading a sound per its *url*.
