@@ -17,28 +17,26 @@ declare class SMSound {
     playState: PlayState;
     
     constructor(oOptions: SoundOptions);
+
     /**
      * Begins loading a sound per its *url*.
      *
      * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
-
-    load(oOptions: SoundOptions);
+    load(oOptions: SoundOptions) : SMSound;
 
     /**
      * Unloads a sound, canceling any open HTTP requests.
      *
      * @return {SMSound} The SMSound object
      */
-
-    unload();
+    unload(): SMSound;
 
     /**
      * Unloads and destroys a sound.
      */
-
-    destruct(_bFromSM);
+    destruct(_bFromSM): void;
 
     /**
      * Begins playing a sound.
@@ -46,8 +44,7 @@ declare class SMSound {
      * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
-
-    play(oOptions: SoundOptions, _updatePlayState); 
+    play(oOptions: SoundOptions, _updatePlayState): SMSound; 
 
     /**
      * Stops playing a sound (and optionally, all sounds)
@@ -55,24 +52,21 @@ declare class SMSound {
      * @param {boolean} bAll Optional: Whether to stop all sounds
      * @return {SMSound} The SMSound object
      */
-
-    stop(bAll);
+    stop(bAll): SMSound;
 
     /**
      * Undocumented/internal: Sets autoPlay for RTMP.
      *
      * @param {boolean} autoPlay state
      */
-
-    setAutoPlay(autoPlay);
+    setAutoPlay(autoPlay): void;
 
     /**
      * Undocumented/internal: Returns the autoPlay boolean.
      *
      * @return {boolean} The current autoPlay value
      */
-
-    getAutoPlay();
+    getAutoPlay(): boolean;
 
     /**
      * Sets the position of a sound.
@@ -80,40 +74,28 @@ declare class SMSound {
      * @param {number} nMsecOffset Position (milliseconds)
      * @return {SMSound} The SMSound object
      */
-
-    setPosition(nMsecOffset);
+    setPosition(nMsecOffset): SMSound;
 
     /**
      * Pauses sound playback.
      *
      * @return {SMSound} The SMSound object
      */
-
-    pause(_bCallFlash);
+    pause(_bCallFlash): SMSound;
 
     /**
      * Resumes sound playback.
      *
      * @return {SMSound} The SMSound object
      */
-
-    /**
-     * When auto-loaded streams pause on buffer full they have a playState of 0.
-     * We need to make sure that the playState is set to 1 when these streams "resume".
-     * When a paused stream is resumed, we need to trigger the onplay() callback if it
-     * hasn't been called already. In this case since the sound is being played for the
-     * first time, I think it's more appropriate to call onplay() rather than onresume().
-     */
-
-    resume();
+    resume(): SMSound;
 
     /**
      * Toggles sound playback.
      *
      * @return {SMSound} The SMSound object
      */
-
-    togglePause();
+    togglePause(): SMSound;
 
     /**
      * Sets the panning (L-R) effect.
@@ -121,8 +103,7 @@ declare class SMSound {
      * @param {number} nPan The pan value (-100 to 100)
      * @return {SMSound} The SMSound object
      */
-
-    setPan(nPan, bInstanceOnly);
+    setPan(nPan, bInstanceOnly): SMSound;
 
     /**
      * Sets the volume.
@@ -130,33 +111,29 @@ declare class SMSound {
      * @param {number} nVol The volume value (0 to 100)
      * @return {SMSound} The SMSound object
      */
-
-    setVolume(nVol: number, _bInstanceOnly);
-    setVolume(nVol: number);
+    setVolume(nVol: number, _bInstanceOnly): SMSound;
+    setVolume(nVol: number): SMSound;
 
     /**
      * Mutes the sound.
      *
      * @return {SMSound} The SMSound object
      */
-
-    mute();
+    mute(): SMSound;
 
     /**
      * Unmutes the sound.
      *
      * @return {SMSound} The SMSound object
      */
-
-    unmute();
+    unmute(): SMSound;
 
     /**
      * Toggles the muted state of a sound.
      *
      * @return {SMSound} The SMSound object
      */
-
-    toggleMute();
+    toggleMute(): SMSound;
 
     /**
      * Registers a callback to be fired when a sound reaches a given position during playback.
@@ -166,8 +143,7 @@ declare class SMSound {
      * @param {object} oScope Optional: The scope to apply the callback to
      * @return {SMSound} The SMSound object
      */
-
-    onPosition(nPosition, oMethod, oScope);
+    onPosition(nPosition:number, oMethod: Function, oScope: any): SMSound;
    
     /**
      * Removes registered callback(s) from a sound, by position and/or callback.
@@ -176,7 +152,7 @@ declare class SMSound {
      * @param {function} oMethod Optional: Identify one callback to be removed when multiple listeners exist for one position
      * @return {SMSound} The SMSound object
      */
-    clearOnPosition(nPosition, oMethod);
+    clearOnPosition(nPosition:number, oMethod:Function): SMSound;
 
 }
 
@@ -256,8 +232,6 @@ declare class SoundManager {
      */
     setup(options: IFlash9MoviestarOptions | IFlash9Options | ISoundManagerOptions): IFlash9MoviestarOptions ;
 
-   
-
     /**
      * Creates a SMSound sound object instance. Can also be overloaded, e.g., createSound('mySound', '/some.mp3');
      *
@@ -266,12 +240,12 @@ declare class SoundManager {
      */
     createSound(oOptions: SoundOptions, _url): SMSound;
     createSound(oOptions: SoundOptions): SMSound;
+
     /**
      * Destroys a SMSound sound object instance.
      *
      * @param {string} sID The ID of the sound to destroy
      */
-
     destroySound(sID: string, _bFromSound);
     destroySound(sID: string);
 
@@ -281,7 +255,6 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @param {object} oOptions: SoundOptions Optional: Sound options
      */
-
     load(sID: string, oOptions: SoundOptions);
 
     /**
@@ -289,7 +262,6 @@ declare class SoundManager {
      *
      * @param {string} sID The ID of the sound
      */
-
     unload(sID: string);
 
     /**
@@ -301,7 +273,6 @@ declare class SoundManager {
      * @param {object} oScope Optional: The scope to apply the callback to
      * @return {SMSound} The SMSound object
      */
-
     onPosition(sID: string, nPosition: number): SMSound;
     onPosition(sID: string, nPosition: number, oMethod: Function): SMSound;
     onPosition(sID: string, nPosition: number, oMethod:Function, oScope: any): SMSound;
@@ -314,7 +285,6 @@ declare class SoundManager {
      * @param {function} oMethod Optional: The relevant callback to fire
      * @return {SMSound} The SMSound object
      */
-
     clearOnPosition(sID: string, nPosition, oMethod): SMSound;
 
     /**
@@ -324,8 +294,6 @@ declare class SoundManager {
      * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
-
-
     play(sID: string): SMSound;
     play(sID: string, oOptions: SoundOptions): SMSound;
 
@@ -336,7 +304,6 @@ declare class SoundManager {
      * @param {number} nMsecOffset Position (milliseconds)
      * @return {SMSound} The SMSound object
      */
-
     setPosition(sID: string, nMsecOffset): SMSound;
 
     /**
@@ -345,13 +312,11 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     stop(sID: string): SMSound;
 
     /**
      * Stops all currently-playing sounds.
      */
-
     stopAll();
 
     /**
@@ -360,13 +325,11 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     pause(sID: string): SMSound;
 
     /**
      * Pauses all currently-playing sounds.
      */
-
     pauseAll();
 
     /**
@@ -375,13 +338,11 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     resume(sID: string): SMSound;
 
     /**
      * Resumes all currently-paused sounds.
      */
-
     resumeAll();
 
     /**
@@ -390,7 +351,6 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     togglePause(sID: string): SMSound;
 
     /**
@@ -400,7 +360,6 @@ declare class SoundManager {
      * @param {number} nPan The pan value (-100 to 100)
      * @return {SMSound} The SMSound object
      */
-
     setPan(sID: string, nPan): SMSound;
 
     /**
@@ -411,7 +370,6 @@ declare class SoundManager {
      * @param {number} nVol The volume value (0 to 100)
      * @return {SMSound} The SMSound object
      */
-
     setVolume(sID: string, nVol): SMSound;
 
     /**
@@ -419,26 +377,23 @@ declare class SoundManager {
      *
      * @param {string} sID Optional: The ID of the sound (if omitted, all sounds will be used.)
      */
-
     mute(sID: string);
 
     /**
      * Mutes all sounds.
      */
-
     muteAll();
+
     /**
      * Calls the unmute() method of either a single SMSound object by ID, or all sound objects.
      *
      * @param {string} sID Optional: The ID of the sound (if omitted, all sounds will be used.)
      */
-
     unmute(sID: string);
 
     /**
      * Unmutes all sounds.
      */
-
     unmuteAll();
 
     /**
@@ -447,7 +402,6 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     toggleMute(sID: string): SMSound;
 
     /**
@@ -455,14 +409,12 @@ declare class SoundManager {
      *
      * @return {number} The amount of memory in use
      */
-
     getMemoryUse();
 
 
     /**
      * Determines playability of a MIME type, eg. 'audio/mp3'.
      */
-
     canPlayMIME(sMIME);
 
     /**
@@ -471,7 +423,6 @@ declare class SoundManager {
      * @param {string} sURL The URL to test
      * @return {boolean} URL playability
      */
-
     canPlayURL(sURL);
 
     /**
@@ -480,7 +431,6 @@ declare class SoundManager {
      * @param {object} oLink an HTML DOM &lt;a&gt; object or object literal including href and/or type attributes
      * @return {boolean} URL playability
      */
-
     canPlayLink(oLink);
 
     /**
@@ -489,7 +439,6 @@ declare class SoundManager {
      * @param {string} sID The ID of the sound
      * @return {SMSound} The SMSound object
      */
-
     getSoundById(sID: string, _suppressDebug): SMSound;
     getSoundById(sID: string): SMSound;
 
@@ -499,7 +448,6 @@ declare class SoundManager {
      * @param {function} oMethod The callback method to fire
      * @param {object} oScope Optional: The scope to apply to the callback
      */
-
     onready(oMethod, oScope);
 
     /**
@@ -508,7 +456,6 @@ declare class SoundManager {
      * @param {function} oMethod The callback method to fire
      * @param {object} oScope Optional: The scope to apply to the callback
      */
-
     ontimeout(oMethod, oScope);
 
     /**
@@ -518,7 +465,6 @@ declare class SoundManager {
      * @param {boolean} excludeInit Options: When true, does not call beginDelayedInit() (which would restart SM2).
      * @return {object} soundManager The soundManager instance.
      */
-
     reboot(resetEvents: boolean, excludeInit: boolean);
     reboot();
 
@@ -529,19 +475,16 @@ declare class SoundManager {
      *
      * @return {number or null} Percent loaded, or if invalid/unsupported, null.
      */
-
     getMoviePercent();
 
     /**
      * Additional helper for manually invoking SM2's init process after DOM Ready / window.onload().
      */
-
     beginDelayedInit();
 
     /**
      * Destroys the SoundManager instance and all SMSound instances.
      */
-
     destruct();
 }
 
