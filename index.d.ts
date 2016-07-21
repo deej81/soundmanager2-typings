@@ -13,9 +13,9 @@ declare enum PlayState {
 
 
 declare class SMSound {
-    
+
     playState: PlayState;
-    
+
     constructor(oOptions: SoundOptions);
 
     /**
@@ -24,7 +24,7 @@ declare class SMSound {
      * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
-    load(oOptions: SoundOptions) : SMSound;
+    load(oOptions: SoundOptions): SMSound;
 
     /**
      * Unloads a sound, canceling any open HTTP requests.
@@ -44,7 +44,7 @@ declare class SMSound {
      * @param {object} oOptions: SoundOptions Optional: Sound options
      * @return {SMSound} The SMSound object
      */
-    play(oOptions: SoundOptions, _updatePlayState): SMSound; 
+    play(oOptions: SoundOptions, _updatePlayState): SMSound;
 
     /**
      * Stops playing a sound (and optionally, all sounds)
@@ -67,6 +67,14 @@ declare class SMSound {
      * @return {boolean} The current autoPlay value
      */
     getAutoPlay(): boolean;
+
+    /**
+     * Sets the playback rate of a sound (HTML5-only.)
+     *
+     * @param {number} playbackRate (+/-)
+     * @return {SMSound} The SMSound object
+     */
+    setPlaybackRate(playbackRate: number): SMSound;
 
     /**
      * Sets the position of a sound.
@@ -143,8 +151,8 @@ declare class SMSound {
      * @param {object} oScope Optional: The scope to apply the callback to
      * @return {SMSound} The SMSound object
      */
-    onPosition(nPosition:number, oMethod: Function, oScope: any): SMSound;
-   
+    onPosition(nPosition: number, oMethod: Function, oScope: any): SMSound;
+
     /**
      * Removes registered callback(s) from a sound, by position and/or callback.
      *
@@ -152,7 +160,7 @@ declare class SMSound {
      * @param {function} oMethod Optional: Identify one callback to be removed when multiple listeners exist for one position
      * @return {SMSound} The SMSound object
      */
-    clearOnPosition(nPosition:number, oMethod:Function): SMSound;
+    clearOnPosition(nPosition: number, oMethod: Function): SMSound;
 
 }
 
@@ -230,7 +238,7 @@ declare class SoundManager {
      * @param {IFlash9MoviestarOptions} options Option parameters, eg. { flashVersion: 9, url: '/path/to/swfs/' }
      * onready and ontimeout are also accepted parameters. call soundManager.setup() to see the full list.
      */
-    setup(options: IFlash9MoviestarOptions | IFlash9Options | ISoundManagerOptions): IFlash9MoviestarOptions ;
+    setup(options: IFlash9MoviestarOptions | IFlash9Options | ISoundManagerOptions): IFlash9MoviestarOptions;
 
     /**
      * Creates a SMSound sound object instance. Can also be overloaded, e.g., createSound('mySound', '/some.mp3');
@@ -275,7 +283,7 @@ declare class SoundManager {
      */
     onPosition(sID: string, nPosition: number): SMSound;
     onPosition(sID: string, nPosition: number, oMethod: Function): SMSound;
-    onPosition(sID: string, nPosition: number, oMethod:Function, oScope: any): SMSound;
+    onPosition(sID: string, nPosition: number, oMethod: Function, oScope: any): SMSound;
 
     /**
      * Calls the clearOnPosition() method of a SMSound object by ID.
@@ -305,6 +313,16 @@ declare class SoundManager {
      * @return {SMSound} The SMSound object
      */
     setPosition(sID: string, nMsecOffset): SMSound;
+
+    /**
+   * Calls the setPlaybackRate() method of a SMSound object by ID.
+   *
+   * @param {string} sID The ID of the sound
+   * @param {number} rate The play rate to set
+   * @param {boolean} allowOverride allow values out of bounds for rate
+   * @return {SMSound} The SMSound object
+   */
+    setPlaybackRate(sID:string, rate:number, allowOverride:boolean):SMSound;
 
     /**
      * Calls the stop() method of a SMSound object by ID.
