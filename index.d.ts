@@ -1,9 +1,32 @@
 
 interface SoundOptions {
-    autoPlay: boolean;
-    id: string;
-    url: string;
-    volume: number;
+    id?: string;
+    url?: string;
+    autoLoad?: boolean;        // enable automatic loading (otherwise .load() will be called on demand with .play(); the latter being nicer on bandwidth - if you want to .load yourself; you also can)
+    autoPlay?: boolean;        // enable playing of file as soon as possible (much faster if "stream" is true)
+    from?: number;             // position to start playback within a sound (msec); default = beginning
+    loops?: number;               // how many times to repeat the sound (position will wrap around to 0; setPosition() will break out of loop when >0)
+    onid3?: Function;            // callback function for "ID3 data is added/available"
+    onerror?: Function;          // callback function for "load failed" (or; playback/network/decode error under HTML5.)
+    onload?: Function;           // callback function for "load finished"
+    whileloading?: Function;     // callback function for "download progress update" (X of Y bytes received)
+    onplay?: Function;           // callback for "play" start
+    onpause?: Function;          // callback for "pause"
+    onresume?: Function;         // callback for "resume" (pause toggle)
+    whileplaying?: Function;     // callback during play (position update)
+    onposition?: Function;       // object containing times and function callbacks for positions of interest
+    onstop?: Function;           // callback for "user stop"
+    onfinish?: Function;         // callback function for "sound finished playing"
+    multiShot?: boolean;        // let sounds "restart" or layer on top of each other when played multiple times; rather than one-shot/one at a time
+    multiShotEvents?: boolean; // fire multiple sound events (currently onfinish() only) when multiShot is enabled
+    position?: number;         // offset (milliseconds) to seek to within loaded sound data.
+    pan?: number;                 // "pan" settings; left-to-right; -100 to 100
+    playbackRate?: number;        // rate at which to play the sound (HTML5-only)
+    stream?: boolean;           // allows playing before entire file has loaded (recommended)
+    to?: number;               // position to end playback within a sound (msec); default = end
+    type?: string;             // MIME-like hint for file pattern / canPlay() tests; eg. audio/mp3
+    usePolicyFile?: boolean;   // enable crossdomain.xml request for audio on remote domains (for ID3/waveform access)
+    volume?: number;  
 }
 
 declare enum PlayState {
